@@ -1,0 +1,10 @@
+{
+  "name": "recoverai-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix recoverai-frontend run dev",
+    "build": "npm --prefix recoverai-frontend run build",
+    "lint": "npm --prefix recoverai-frontend run lint",
+    "preview": "npm --prefix recoverai-frontend run preview"
+  }
+}

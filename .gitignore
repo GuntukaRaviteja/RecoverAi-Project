@@ -1,0 +1,19 @@
+# IDE and OS files
+.idea/
+.DS_Store
+
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+
+# Dependencies and build output
+**/node_modules/
+**/target/
+**/dist/
+**/build/
+**/*.zip
+
+# Logs
+*.log
+npm-debug.log*
