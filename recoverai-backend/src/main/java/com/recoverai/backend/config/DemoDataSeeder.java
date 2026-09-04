@@ -26,19 +26,22 @@ public class DemoDataSeeder implements CommandLineRunner {
     private final AuditLogRepository auditLogRepository;
 
     private final boolean seedEnabled;
+    private final boolean resetEnabled;
 
     public DemoDataSeeder(
             PaymentRepository paymentRepository,
             RecoveryAttemptRepository recoveryAttemptRepository,
             AiDecisionRepository aiDecisionRepository,
             AuditLogRepository auditLogRepository,
-            @Value("${recoverai.demo.seed:false}") boolean seedEnabled
+            @Value("${recoverai.demo.seed:false}") boolean seedEnabled,
+            @Value("${recoverai.demo.reset:false}") boolean resetEnabled
     ) {
         this.paymentRepository = paymentRepository;
         this.recoveryAttemptRepository = recoveryAttemptRepository;
         this.aiDecisionRepository = aiDecisionRepository;
         this.auditLogRepository = auditLogRepository;
         this.seedEnabled = seedEnabled;
+        this.resetEnabled = resetEnabled;
     }
 
     @Override
@@ -46,6 +49,10 @@ public class DemoDataSeeder implements CommandLineRunner {
     public void run(String... args) {
 
         if (!seedEnabled) {
+            return;
+        }
+
+        if (!resetEnabled && paymentRepository.count() > 0) {
             return;
         }
 

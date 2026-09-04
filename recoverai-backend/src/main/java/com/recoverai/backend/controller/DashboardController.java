@@ -315,6 +315,8 @@ public class DashboardController {
                 double recoveryLiftPercentage = blindRetryRevenueRecovered == 0
                         ? 0
                         : round(additionalRevenueRecovered / blindRetryRevenueRecovered * 100.0);
+                long unnecessaryBlindRetries =
+                        customerActionCases + policyStoppedCases;
 
                 return new RecoveryComparison(
                         failedPaymentCohort.size(),
@@ -329,11 +331,11 @@ public class DashboardController {
                         blindRetryRecoveredPayments,
                         round(blindRetryRevenueRecovered),
                         blindRetryRate,
-                        failedPaymentCohort.size(),
+                        firstAttemptByPayment.size(),
                         round(recoverAiRate - blindRetryRate),
                         round(additionalRevenueRecovered),
                         recoveryLiftPercentage,
-                        Math.max(failedPaymentCohort.size() - policyApproved, 0),
+                        unnecessaryBlindRetries,
                         customerActionCases,
                         policyStoppedCases,
                         maxAttemptsReached
@@ -362,7 +364,7 @@ public class DashboardController {
             case "ACCOUNT_CLOSED" ->
                     "Account Closed";
 
-            case "CARD_EXPIRED" ->
+            case "CARD_EXPIRED", "EXPIRED_CARD" ->
                     "Card Expired";
 
             case "CARD_DECLINED" ->
@@ -377,7 +379,7 @@ public class DashboardController {
             case "INVALID_ACCOUNT" ->
                     "Invalid Account";
 
-            case "NETWORK_ERROR" ->
+            case "NETWORK_ERROR", "NETWORK_TECHNICAL_FAILURE" ->
                     "Temporary Network Error";
 
             case "OTHER" ->

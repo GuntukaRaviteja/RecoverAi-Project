@@ -34,7 +34,8 @@ public class RuleBasedDecisionStrategy implements AiDecisionStrategy {
                             DecisionSource.RULE_BASED_FALLBACK
                     );
 
-            case "NETWORK_ERROR" ->
+            case "NETWORK_ERROR", "NETWORK_TECHNICAL_FAILURE", "PAYMENT_TIMEOUT",
+                    "BANK_ISSUER_UNAVAILABLE" ->
                     new DecisionResult(
                             DecisionType.RETRY,
                             RecoveryAction.CREATE_RECOVERY_ATTEMPT,
@@ -52,7 +53,7 @@ public class RuleBasedDecisionStrategy implements AiDecisionStrategy {
                             DecisionSource.RULE_BASED_FALLBACK
                     );
 
-            case "CARD_EXPIRED" ->
+            case "CARD_EXPIRED", "EXPIRED_CARD" ->
                     new DecisionResult(
                             DecisionType.NOTIFY_CUSTOMER,
                             RecoveryAction.NOTIFY_CUSTOMER,
@@ -79,7 +80,7 @@ public class RuleBasedDecisionStrategy implements AiDecisionStrategy {
                             DecisionSource.RULE_BASED_FALLBACK
                     );
 
-            case "INVALID_ACCOUNT" ->
+            case "INVALID_ACCOUNT", "INVALID_CARD" ->
                     new DecisionResult(
                             DecisionType.STOP,
                             RecoveryAction.NO_ACTION,
@@ -97,7 +98,7 @@ public class RuleBasedDecisionStrategy implements AiDecisionStrategy {
                             DecisionSource.RULE_BASED_FALLBACK
                     );
 
-            case "TRANSACTION_LIMIT_EXCEEDED" ->
+            case "TRANSACTION_LIMIT_EXCEEDED", "LIMIT_EXCEEDED" ->
                     new DecisionResult(
                             DecisionType.NOTIFY_CUSTOMER,
                             RecoveryAction.NOTIFY_CUSTOMER,

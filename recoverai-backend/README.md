@@ -277,6 +277,16 @@ All endpoints are served from `http://localhost:8080`.
 | POST | `/api/recovery/attempts/{recoveryAttemptId}/execute` | Execute a recovery attempt |
 | PUT | `/api/recovery/{recoveryAttemptId}/status` | Update status manually |
 
+### Razorpay Test Mode webhook
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| POST | `/api/webhooks/razorpay` | Verify a Razorpay signature and ingest `payment.failed`, `payment.authorized`, or `payment.captured` events |
+
+Configure `RAZORPAY_WEBHOOK_SECRET` with the secret from the Razorpay
+Dashboard webhook configuration. Invalid signatures are rejected and only a
+masked card reference is stored.
+
 ### Dashboard and analytics
 
 | Method | Endpoint | Purpose |
@@ -316,6 +326,21 @@ The React/Vite dashboard lives in:
 ```text
 ../recoverai-frontend/recoverai-frontend
 ```
+
+## Docker quick start
+
+From the repository root:
+
+```bash
+docker compose up --build
+```
+
+Open `http://localhost:5173`. MySQL and the backend are provisioned
+automatically. Set `RAZORPAY_WEBHOOK_SECRET` before starting when testing
+Razorpay webhooks.
+
+Demo data is seeded only when the database is empty. To intentionally reset
+the demo database, start Compose with `RECOVERAI_DEMO_RESET=true`.
 
 Run it with:
 

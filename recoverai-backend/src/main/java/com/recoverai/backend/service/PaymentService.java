@@ -116,7 +116,7 @@ public class PaymentService {
         if (normalized.contains("CARD")
                 && (normalized.contains("EXPIRED")
                 || normalized.contains("EXPIRY"))) {
-            return "CARD_EXPIRED";
+            return "EXPIRED_CARD";
         }
 
         if (normalized.contains("CARD")
@@ -143,7 +143,7 @@ public class PaymentService {
         if (normalized.contains("NETWORK")
                 || normalized.contains("CONNECTION")
                 || normalized.contains("TIMEOUT")) {
-            return "NETWORK_ERROR";
+            return "NETWORK_TECHNICAL_FAILURE";
         }
 
         return "OTHER";
