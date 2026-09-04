@@ -13,7 +13,7 @@ analytics definitions, and API endpoints.
 
 ## Architecture
 
-![RecoverAI architecture](docs/recoverai-architecture.svg)
+![recoverai architecture](docs/recoverai-architecture.png)
 
 The diagram shows the verified Razorpay webhook, AI decision, policy
 guardrails, recovery orchestration, customer actions, outreach, persistence,
