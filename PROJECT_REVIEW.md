@@ -791,13 +791,6 @@ failure, selects a bounded intervention, executes the workflow, and measures
 recovered revenue across a synthetic batch. It also demonstrates compliant
 stopping rules and customer-guided escalation.
 
-### What broke and how it was fixed
-
-The first demo version had repeated database resets, category mismatches in
-fallback rules, and no reproducible Docker startup. The project was improved
-by making seeding persistent with an explicit reset flag, aligning failure
-categories, adding signed Razorpay webhook ingestion, adding Docker Compose,
-and verifying the backend and frontend together.
 
 ## 20. Final verdict
 
