@@ -19,11 +19,6 @@ production payment-processing system. Payment outcomes are simulated. Razorpay
 Test Mode webhook ingestion is implemented, but the recovery execution itself
 does not charge a real payment method.
 
-### One-sentence pitch
-
-> RecoverAI helps merchants recover failed payment revenue without blindly
-> retrying every customer, using explainable AI recommendations, deterministic
-> safety guardrails, customer-guided recovery, and a complete audit trail.
 
 ## 2. Problem and target users
 
