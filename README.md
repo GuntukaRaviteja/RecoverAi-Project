@@ -11,6 +11,14 @@ Boot backend, MySQL persistence, and a React/Vite operations dashboard.
 See `recoverai-backend/README.md` for architecture, setup, recovery states,
 analytics definitions, and API endpoints.
 
+## Architecture
+
+![RecoverAI architecture](docs/recoverai-architecture.svg)
+
+The diagram shows the verified Razorpay webhook, AI decision, policy
+guardrails, recovery orchestration, customer actions, outreach, persistence,
+and analytics flow.
+
 ## Quick start
 
 Start the backend on port `8080`:

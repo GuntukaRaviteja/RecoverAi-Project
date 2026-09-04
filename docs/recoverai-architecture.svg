@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">RecoverAI system architecture</title>
+  <desc id="desc">Architecture diagram showing Razorpay webhooks flowing through a Spring Boot recovery platform with Gemini AI, policy guardrails, MySQL, scheduler, and customer outreach.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08111f"/>
+      <stop offset="1" stop-color="#111d33"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#35d07f"/>
+      <stop offset="1" stop-color="#38a8ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".28"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#78a8d8"/>
+    </marker>
+    <style>
+      .title { font: 700 42px Inter, Arial, sans-serif; fill: #f6f9ff; }
+      .subtitle { font: 400 19px Inter, Arial, sans-serif; fill: #a8bad4; }
+      .section { font: 700 16px Inter, Arial, sans-serif; letter-spacing: 2px; fill: #6fd99b; }
+      .card-title { font: 700 22px Inter, Arial, sans-serif; fill: #f5f8ff; }
+      .body { font: 400 16px Inter, Arial, sans-serif; fill: #b7c7dc; }
+      .small { font: 400 14px Inter, Arial, sans-serif; fill: #8fa6c2; }
+      .pill { font: 700 14px Inter, Arial, sans-serif; fill: #07111e; }
+      .line { stroke: #78a8d8; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dashed { stroke-dasharray: 9 8; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1450" cy="80" r="230" fill="#1b6c78" opacity=".16"/>
+  <circle cx="110" cy="920" r="250" fill="#25624e" opacity=".14"/>
+
+  <text x="80" y="78" class="title">Recover<tspan fill="#38a8ff">AI</tspan></text>
+  <text x="80" y="112" class="subtitle">AI-guided payment recovery for higher merchant revenue</text>
+  <rect x="1210" y="54" width="310" height="48" rx="24" fill="#f4f7fb"/>
+  <text x="1365" y="85" text-anchor="middle" class="pill">RAZORPAY BUILDATHON · TRACK 03</text>
+
+  <text x="80" y="170" class="section">INPUTS AND USERS</text>
+  <rect x="80" y="195" width="335" height="170" rx="18" fill="#142b43" stroke="#2f78b8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="110" y="238" class="card-title">Razorpay Test Mode</text>
+  <text x="110" y="272" class="body">payment.failed webhook</text>
+  <text x="110" y="300" class="body">HMAC-SHA256 signature check</text>
+  <text x="110" y="328" class="body">Payment ID · amount · method</text>
+  <text x="110" y="350" class="small">Only masked payment references are stored</text>
+
+  <rect x="470" y="195" width="335" height="170" rx="18" fill="#163329" stroke="#35c879" stroke-width="2" filter="url(#shadow)"/>
+  <text x="500" y="238" class="card-title">Merchant Operations Team</text>
+  <text x="500" y="272" class="body">Monitor revenue at risk</text>
+  <text x="500" y="300" class="body">Review recovery cases</text>
+  <text x="500" y="328" class="body">Inspect analytics and audit logs</text>
+  <text x="500" y="350" class="small">React/Vite operations dashboard</text>
+
+  <rect x="860" y="195" width="335" height="170" rx="18" fill="#302b18" stroke="#e1b24e" stroke-width="2" filter="url(#shadow)"/>
+  <text x="890" y="238" class="card-title">Customer</text>
+  <text x="890" y="272" class="body">Retry later</text>
+  <text x="890" y="300" class="body">Promise to pay</text>
+  <text x="890" y="328" class="body">Choose another payment method</text>
+  <text x="890" y="350" class="small">Customer control replaces blind retries</text>
+
+  <rect x="1250" y="195" width="270" height="170" rx="18" fill="#29203c" stroke="#9c75e8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1280" y="238" class="card-title">Outreach</text>
+  <text x="1280" y="272" class="body">Email · Spring Mail</text>
+  <text x="1280" y="300" class="body">WhatsApp · Twilio</text>
+  <text x="1280" y="328" class="body">Audit-only when disabled</text>
+  <text x="1280" y="350" class="small">Cooldown and promise-to-pay rules</text>
+
+  <text x="80" y="420" class="section">RECOVERY DECISION PIPELINE</text>
+  <rect x="80" y="445" width="1440" height="260" rx="22" fill="#0d1727" stroke="#2c4564" stroke-width="2"/>
+
+  <rect x="110" y="495" width="250" height="160" rx="16" fill="#192b43" stroke="#4b9ce8" stroke-width="2"/>
+  <text x="135" y="535" class="card-title">1 · Payment Service</text>
+  <text x="135" y="570" class="body">Store failed payment</text>
+  <text x="135" y="598" class="body">Determine failure category</text>
+  <text x="135" y="626" class="body">Create recovery context</text>
+
+  <rect x="410" y="495" width="250" height="160" rx="16" fill="#282044" stroke="#9a78e8" stroke-width="2"/>
+  <text x="435" y="535" class="card-title">2 · AI Decision</text>
+  <text x="435" y="570" class="body">Gemini structured output</text>
+  <text x="435" y="598" class="body">Retry · notify · stop</text>
+  <text x="435" y="626" class="body">Confidence and explanation</text>
+
+  <rect x="710" y="495" width="250" height="160" rx="16" fill="#17382f" stroke="#43d28a" stroke-width="2"/>
+  <text x="735" y="535" class="card-title">3 · Policy Guardrails</text>
+  <text x="735" y="570" class="body">Maximum 5 attempts</text>
+  <text x="735" y="598" class="body">One active attempt</text>
+  <text x="735" y="626" class="body">Block unsafe categories</text>
+
+  <rect x="1010" y="495" width="250" height="160" rx="16" fill="#3a2d1a" stroke="#e4b558" stroke-width="2"/>
+  <text x="1035" y="535" class="card-title">4 · Recovery Orchestrator</text>
+  <text x="1035" y="570" class="body">Schedule or execute retry</text>
+  <text x="1035" y="598" class="body">Handle customer actions</text>
+  <text x="1035" y="626" class="body">Update payment status</text>
+
+  <rect x="1310" y="495" width="180" height="160" rx="16" fill="#2b203b" stroke="#b07cf0" stroke-width="2"/>
+  <text x="1335" y="535" class="card-title">5 · Audit</text>
+  <text x="1335" y="570" class="body">Decision log</text>
+  <text x="1335" y="598" class="body">State changes</text>
+  <text x="1335" y="626" class="body">Outreach history</text>
+
+  <path d="M360 575 H400" class="line"/>
+  <path d="M660 575 H700" class="line"/>
+  <path d="M960 575 H1000" class="line"/>
+  <path d="M1260 575 H1300" class="line"/>
+  <path d="M247 365 V485" class="line"/>
+  <path d="M637 365 V485" class="line"/>
+  <path d="M1027 365 V485" class="line dashed"/>
+  <path d="M1385 365 V485" class="line dashed"/>
+
+  <text x="80" y="760" class="section">STATE, DATA, AND OUTCOMES</text>
+  <rect x="80" y="785" width="450" height="140" rx="18" fill="#321f2a" stroke="#d85f7e" stroke-width="2" filter="url(#shadow)"/>
+  <text x="110" y="828" class="card-title">MySQL Persistence</text>
+  <text x="110" y="862" class="body">Payments · AI decisions · recovery attempts</text>
+  <text x="110" y="890" class="body">Customer actions · audit logs</text>
+
+  <rect x="575" y="785" width="450" height="140" rx="18" fill="#302b18" stroke="#e1b24e" stroke-width="2" filter="url(#shadow)"/>
+  <text x="605" y="828" class="card-title">Scheduled Recovery</text>
+  <text x="605" y="862" class="body">Runs every 30 seconds</text>
+  <text x="605" y="890" class="body">Executes due work and controlled retries</text>
+
+  <rect x="1070" y="785" width="450" height="140" rx="18" fill="url(#hero)" filter="url(#shadow)"/>
+  <text x="1100" y="828" class="card-title" fill="#07111e">Merchant outcomes</text>
+  <text x="1100" y="862" class="body" fill="#07111e">Recovered revenue · recovery rate · funnel</text>
+  <text x="1100" y="890" class="body" fill="#07111e">Safe stops · customer control · visibility</text>
+
+  <path d="M835 705 V760 H305 V775" class="line"/>
+  <path d="M1135 705 V775" class="line"/>
+  <path d="M1400 705 V760 H1295 V775" class="line"/>
+</svg>
